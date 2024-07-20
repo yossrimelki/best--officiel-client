@@ -57,156 +57,86 @@ const Reclamation = () => {
   return (
     <div className="relative overflow-hidden bg-gray-900 rounded-2xl mx-4 my-8 sm:mx-8 lg:mx-16">
       <div className="px-8 py-8 sm:px-12 lg:px-16 lg:py-14">
-      <h1 className='text-lg lg:text-base md:text-sm uppercase text-white font-semibold mb-4'>Contact US!</h1>
-        <div className="md:flex md:items-center md:space-x-12 lg:space-x-24">
-          <div className="grid grid-cols-1 gap-y-4 sm:grid-cols-2 gap-x-6 xl:gap-x-12 w-full">
-            {[
-              { label: "from_email", placeholder: "write your email here ..." },
-              { label: "from_name", placeholder: "write your name here ..." },
-              { label: "num" , placeholder:"write your phone number here ..." },
-              { label: "subject", placeholder:"write your subject here ..."  },
-            ].map((field) => (
+        <h1 className="text-lg lg:text-base md:text-sm uppercase text-white font-semibold mb-4">
+          Contact Us!
+        </h1>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="flex flex-wrap gap-6">
+            <div className="flex-1 min-w-[200px]">
+              <label htmlFor="from_name" className="text-white mb-1 block">Name</label>
               <input
-                key={field.label}
-                type={field.label === "from_email" ? "email" : "text"}
-                name={field.label}
-                value={formData[field.label]}
+                id="from_name"
+                type="text"
+                name="from_name"
+                value={formData.from_name}
                 onChange={handleChange}
-                placeholder={field.placeholder}
+                placeholder="Your name"
                 className="p-2 border border-gray-300 rounded-md w-full"
+                required
               />
-            ))}
+            </div>
+            <div className="flex-1 min-w-[200px]">
+              <label htmlFor="from_email" className="text-white mb-1 block">Email</label>
+              <input
+                id="from_email"
+                type="email"
+                name="from_email"
+                value={formData.from_email}
+                onChange={handleChange}
+                placeholder="Your email"
+                className="p-2 border border-gray-300 rounded-md w-full"
+                required
+              />
+            </div>
+            <div className="flex-1 min-w-[200px]">
+              <label htmlFor="num" className="text-white mb-1 block">Phone Number</label>
+              <input
+                id="num"
+                type="text"
+                name="num"
+                value={formData.num}
+                onChange={handleChange}
+                placeholder="Your phone number"
+                className="p-2 border border-gray-300 rounded-md w-full"
+                required
+              />
+            </div>
+            <div className="flex-1 min-w-[200px]">
+              <label htmlFor="subject" className="text-white mb-1 block">Subject</label>
+              <input
+                id="subject"
+                type="text"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                placeholder="Subject"
+                className="p-2 border border-gray-300 rounded-md w-full"
+                required
+              />
+            </div>
+          </div>
+          <div>
+            <label htmlFor="message" className="text-white mb-1 block">Message</label>
             <textarea
+              id="message"
               name="message"
               value={formData.message}
               onChange={handleChange}
-              placeholder="Message"
-              className="p-2 border border-gray-300 rounded-md w-full col-span-2"
+              placeholder="Your message"
+              className="p-2 border border-gray-300 rounded-md w-full"
+              rows="4"
+              required
             />
           </div>
-          <div className="hidden lg:flex items-center justify-center lg:block lg:ml-12">
-            <svg
-              className="w-4 h-auto text-gray-600"
-              viewBox="0 0 16 123"
-              fill="none"
-              stroke="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 11)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 46)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 81)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 116)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 18)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 53)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 88)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 123)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 25)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 60)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 95)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 32)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 67)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 102)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 39)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 74)"
-              ></line>
-              <line
-                y1="-0.5"
-                x2="18.0278"
-                y2="-0.5"
-                transform="matrix(-0.83205 -0.5547 -0.5547 0.83205 15 109)"
-              ></line>
-            </svg>
-          </div>
-          <div className="mt-10 md:mt-0 md:flex md:items-center md:justify-center">
-            <a
-              title="Get quote now"
-              className="inline-flex items-center justify-center px-6 py-3 mt-5 text-base font-bold text-gray-900 transition-all duration-200 bg-white border border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white hover:bg-opacity-90 rounded-xl"
-              href="#support"
-              onClick={handleSubmit}
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="px-6 py-3 text-base font-bold text-gray-900 transition-all duration-200 bg-white border border-transparent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white hover:bg-opacity-90 rounded-xl"
             >
               Contact Us Now
-            </a>
+            </button>
           </div>
-        </div>
+        </form>
       </div>
     </div>
   );

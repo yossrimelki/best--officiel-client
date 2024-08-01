@@ -39,3 +39,35 @@
 .read-the-docs {
   color: #888;
 }
+.emotion-bar {
+  width: 100%;
+  background-color: #f8f9fa;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200; /* Make sure it appears above the navbar */
+  transition: all 0.3s ease-in-out;
+}
+
+.emotion-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@media (max-width: 768px) {
+  .emotion-text {
+      font-size: 0.85rem;
+  }
+}
+html {
+  scroll-behavior: smooth;
+}

@@ -4,7 +4,7 @@ import {
     selectCartItems,
     selectCartState,
     selectTotalAmount,
-    selectTotalQTY,
+    selectTotalQuantity,  // Corrected import
     setClearCartItems,
     setCloseCart,
     setGetTotals
@@ -20,7 +20,7 @@ const Cart = () => {
     const ifCartState = useSelector(selectCartState);
     const cartItems = useSelector(selectCartItems);
     const totalAmount = useSelector(selectTotalAmount);
-    const totalQTY = useSelector(selectTotalQTY);
+    const totalQTY = useSelector(selectTotalQuantity);  // Corrected selector usage
     const [showPopup, setShowPopup] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
@@ -31,7 +31,17 @@ const Cart = () => {
     const [selectedSizes, setSelectedSizes] = useState({});
 
     useEffect(() => {
-        dispatch(setGetTotals());
+        // Calculate the total amount with discounts
+        const calculateTotals = () => {
+            let amount = 0;
+            cartItems.forEach(item => {
+                const newPrice = item.solde ? item.price - (item.price * item.solde / 100) : item.price;
+                amount += newPrice * item.cartQuantity;
+            });
+            dispatch(setGetTotals({ totalAmount: amount, totalQTY: cartItems.length })); // Dispatch the total amount and quantity to Redux store
+        };
+
+        calculateTotals();
     }, [cartItems, dispatch]);
 
     const onCartToggle = () => {
@@ -70,20 +80,24 @@ const Cart = () => {
         }
 
         try {
-            // Prepare items array with required fields including productId
-            const items = cartItems.map((item) => ({
-                title: item.title,
-                _id: item._id, // Ensure _id is used as productId
-                productType: "Shoes", // Adjust productType as per your data
-                quantity: item.cartQuantity,
-                price: item.price,
-            }));
+            // Prepare items array with discounted price
+            const items = cartItems.map((item) => {
+                const newPrice = item.solde ? item.price - (item.price * item.solde / 100) : item.price;
+                return {
+                    title: item.title,
+                    _id: item._id,
+                    productType: "Shoes",
+                    quantity: item.cartQuantity,
+                    price: newPrice,
+                    solde: item.solde
+                };
+            });
 
             const commandeData = {
                 name: formData.name,
                 phone: formData.phone,
                 items: items,
-                totalAmount: totalAmount,
+                totalAmount: items.reduce((acc, item) => acc + item.price * item.quantity, 0), // Compute total amount
                 deliveryAddress: formData.location,
                 paymentMethod: "placeholder_payment_method",
                 orderDate: new Date(),
@@ -101,12 +115,12 @@ const Cart = () => {
                 email: formData.email,
                 location: formData.location,
                 phone: formData.phone,
-                cartItems: cartItems.map((item) => ({
+                cartItems: items.map((item) => ({
                     title: item.title,
                     price: item.price,
-                    cartQuantity: item.cartQuantity,
+                    cartQuantity: item.quantity,
                     sizes: item.sizes,
-                    selectedSize: selectedSizes[item._id], // Use _id for selectedSize
+                    selectedSize: selectedSizes[item._id],
                 })),
             };
 
@@ -177,7 +191,7 @@ const Cart = () => {
                                 <div className="flex items-center justify-between">
                                     <h1 className="text-base font-semibold uppercase">SubTotal</h1>
                                     <h1 className="text-sm rounded bg-theme-cart text-slate-100 px-1 py-0.5">
-                                        ${totalAmount}
+                                        ${totalAmount.toFixed(2)}
                                     </h1>
                                 </div>
                                 <div className="grid items-center gap-2">
@@ -202,19 +216,28 @@ const Cart = () => {
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-[300]">
                     <div className="bg-white p-5 rounded shadow-lg">
                         <h2 className="text-xl font-bold mb-4">Order Summary</h2>
-                        <p>Total Amount: ${totalAmount}</p>
+                        <p>Total Amount: ${totalAmount.toFixed(2)}</p>
                         <div className="mb-4">
-                            {cartItems.map((item, index) => (
-                                <div key={index} className="mb-2 border-b border-gray-200 pb-2">
-                                    <p>Product: {item.title}</p>
-                                    <p>Unit Price: ${item.price}</p>
-                                    <p>Quantity: {item.cartQuantity}</p>
-                                    {item.sizes && (
-                                        <p>Size: {selectedSizes[item._id]}</p> // Use _id for selectedSizes
-                                    )}
-                                    <p>Total: ${item.price * item.cartQuantity}</p>
-                                </div>
-                            ))}
+                            {cartItems.map((item, index) => {
+                                const newPrice = item.solde ? item.price - (item.price * item.solde / 100) : item.price;
+                                return (
+                                    <div key={index} className="mb-2 border-b border-gray-200 pb-2">
+                                        <p>Product: {item.title}</p>
+                                        {item.solde ? (
+                                            <>
+                                                <p>Unit Price: <span className="line-through">${item.price.toFixed(2)}</span> ${newPrice.toFixed(2)}</p>
+                                            </>
+                                        ) : (
+                                            <p>Unit Price: ${item.price.toFixed(2)}</p>
+                                        )}
+                                        <p>Quantity: {item.cartQuantity}</p>
+                                        {item.sizes && (
+                                            <p>Size: {selectedSizes[item._id]}</p>
+                                        )}
+                                        <p>Total: ${(newPrice * item.cartQuantity).toFixed(2)}</p>
+                                    </div>
+                                );
+                            })}
                         </div>
                         <form onSubmit={handleFormSubmit}>
                             <div className="mb-4">
@@ -297,4 +320,3 @@ const Cart = () => {
 };
 
 export default Cart;
-

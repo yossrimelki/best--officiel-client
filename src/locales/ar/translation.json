@@ -1,0 +1,25 @@
+{
+  "title": "مرحبا بكم في متجرنا",
+  "subtitle": "ابحث عن تطابقك المثالي",
+  "btntext": "تسوق الآن",
+  "clothing": {
+    "title": "اكتشف مجموعتنا الحصرية من الملابس",
+    "subtitle": "استكشف أحدث الصيحات والأنماط الكلاسيكية مع مجموعتنا الحصرية من الملابس. من الملابس الكاجوال إلى الملابس الرسمية، ابحث عن الزي المثالي لكل مناسبة. استمتع بالأقمشة عالية الجودة والتصاميم الاستثنائية والراحة التي لا تضاهى.",
+    "btn": "تسوق الآن",
+    "url": "https://www.yourstore.com/clothing",
+    "img": "https://th.bing.com/th/id/R.da509aec9346c4a6b460a9819a9f4089?rik=mg5Zn7WKVR%2fsxA&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2ftransparent-clothes-pictures%2ftransparent-clothes-pictures-7.png&ehk=14l2WcTshFLFbMK7tRS%2bRm8v2kmN0b93JDhmMe7lmuw%3d&risl=1&pid=ImgRaw&r=0"
+  },
+  "highlight": {
+    "heading": "تسليط الضوء",
+    "storeTitle": "مرحبا بكم في متجرنا",
+    "storeSubtitle": "ابحث عن تطابقك المثالي",
+    "storeBtnText": "تسوق الآن",
+    "seeMore": "شاهد المزيد",
+    "ourShoesCollection": "مجموعة أحذيتنا"
+  },
+  "footer": {
+    "title": "ابقى على تواصل",
+    "subtitle": "تابعنا على وسائل التواصل الاجتماعي وابقَ على اطلاع بأحدث العروض والأخبار.",
+    "copyright": "جميع الحقوق محفوظة"
+  }
+}

@@ -36,4 +36,41 @@
     color: #ffffff;
     display: block;
   }
+
+.emotion-bar {
+  width: 100%;
+  background-color: #f8f9fa;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50; /* Ensure it appears above the navbar */
+  transition: all 0.3s ease-in-out;
+}
+
+.emotion-text {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@media (max-width: 768px) {
+  .emotion-text {
+      font-size: 0.85rem;
+  }
+}
+
+/* Navbar styles */
+
+header {
+  top: 40px; /* Adjust based on the height of the EmotionBar */
+  z-index: 40; /* Ensure it appears below the EmotionBar */
+}
   

@@ -1,15 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const SocialLink = ({ icon }) => {
+const SocialLink = ({ icon, url }) => {
   return (
-   <>
-      <img
-        src={icon}
-        alt="icon/social"
-        className="w-8 h-8 flex items-center cursor-pointer md:w-6 md:h-6 sm:w-5 sm:h-5 transition-all duration-200 hover:scale-110"
-      />
-   </>
-  )
-}
+    <a href={url} target="_blank" rel="noopener noreferrer">
+      <img src={icon} alt="social-icon" className="w-8 h-8 object-contain cursor-pointer" />
+    </a>
+  );
+};
 
-export default SocialLink
+export default SocialLink;

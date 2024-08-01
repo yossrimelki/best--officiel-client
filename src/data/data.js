@@ -28,28 +28,29 @@ import product12 from "../assets/product12.png";
 
 import facebook from "../assets/facebook.svg";
 import instagram from "../assets/instagram.svg";
-import twitter from "../assets/twitter.svg";
-import youtube from "../assets/youtube.svg";
-import messenger from "../assets/messenger.svg";
+import whatsapp from "../assets/whatsapp.svg";
+
+import tiktok from "../assets/tiktok.svg";
+
 
 const heroapi = {
   title: "Welcome To BestOfficiel",
-  subtitle: "Shoes&Others",
+  subtitle: "Shoes & Others",
   img: heroimg,
-  btntext: "Let s Start",
+  btntext: "Let’s Start",
   videos: [
     { imgsrc: vcover1, clip: clip },
     { imgsrc: vcover2, clip: clip },
     { imgsrc: vcover3, clip: clip },
   ],
   sociallinks: [
-    { icon: facebook },
-    { icon: messenger },
-    { icon: instagram },
-    { icon: twitter },
-    { icon: youtube },
+    { icon: facebook, url: 'https://www.facebook.com/people/Best-Shop-officiel/61559431152554/?mibextid=ZbWKwL' },
+    { icon: tiktok, url: 'https://www.tiktok.com/@yourprofile' },
+    { icon: instagram, url: 'https://www.instagram.com/bestshoop_officiel?igsh=aTBsOHRocGRlanpi' },
+    { icon: whatsapp, url: 'https://wa.me/+21651848949' },
   ],
 };
+
 const popularsales = {
   title: "Our Shoes Collection",
   items: [
@@ -129,10 +130,10 @@ const popularsales = {
 };
 const highlight = {
   heading: "HIGHLIGHTS",
-  title: "Apple Watch Series 8",
-  text: "Discover the new Apple Watch Series 8, the ultimate device for a healthy life. Featuring an advanced health monitoring system, this innovative smartwatch tracks your heart rate, blood oxygen levels, and even detects irregular rhythms.",
-  btn: "Explore More",
-  url: "https://www.apple.com/watch/",
+  title: "Discover Our Exclusive Clothing Collection",
+  text: "Explore the latest trends and timeless styles with our exclusive clothing collection. From casual wear to formal attire, find the perfect outfit for every occasion. Enjoy high-quality fabrics, exceptional designs, and unbeatable comfort.",
+  btn: "Shop Now",
+  url: "https://www.yourstore.com/clothing",
   img: hightlightimg,
 };
 
@@ -267,7 +268,7 @@ const toprateslaes = {
       img: product11,
       price: "150",
       color: "from-slate-900 to-black",
-      shadow: "shadow-lg shadow-black",
+      shadow: "   q",
     },
     {
       id: "0M0x12",

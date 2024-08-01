@@ -17,24 +17,17 @@ const CartItem = ({ item, selectedSize, onSizeChange }) => {
     shadow,
     price,
     cartQuantity,
-    sizes
+    sizes,
+    solde
   } = item;
   const dispatch = useDispatch();
   const [localSelectedSize, setLocalSelectedSize] = useState(
     selectedSize || (sizes && sizes.length > 0 ? sizes[0].toString() : "")
   );
 
-  const onRemoveItem = () => {
-    dispatch(setRemoveItemFromCart({ ...item, pointure: localSelectedSize }));
-  };
-
-  const onIncreaseItemQTY = () => {
-    dispatch(setIncreaseItemQTY({ ...item, pointure: localSelectedSize }));
-  };
-
-  const onDecreaseItemQTY = () => {
-    dispatch(setDecreaseItemQTY({ ...item, pointure: localSelectedSize }));
-  };
+  const discountedPrice = solde && solde > 0
+    ? price - (price * solde / 100)
+    : price;
 
   const handleSizeChange = (size) => {
     setLocalSelectedSize(size.toString());
@@ -48,12 +41,19 @@ const CartItem = ({ item, selectedSize, onSizeChange }) => {
           className={`bg-gradient-to-b ${color} ${shadow} relative rounded p-3 hover:scale-105 transition-all duration-75 ease-in-out grid items-center`}
         >
           <img
-            src={img}
+            src={`http://localhost:3000${img}`}
             alt={`img/cart-item/${_id}`}
             className="w-36 h-auto object-fill lg:w-28"
           />
           <div className="absolute right-1 top-1 blur-theme-effect bg-white/80 text-black text-xs px-1 rounded">
-            ${price}
+            {solde && solde > 0 ? (
+              <>
+                <span className="line-through">${price.toFixed(2)}</span>
+                <span className="ml-2">${discountedPrice.toFixed(2)}</span>
+              </>
+            ) : (
+              `$${price.toFixed(2)}`
+            )}
           </div>
         </div>
         <div className="grid items-center gap-4">
@@ -88,7 +88,7 @@ const CartItem = ({ item, selectedSize, onSizeChange }) => {
         <div className="flex items-center justify-around w-full">
           <button
             type="button"
-            onClick={onDecreaseItemQTY}
+            onClick={() => dispatch(setDecreaseItemQTY({ _id }))}
             className="bg-theme-cart rounded w-6 h-6 lg:w-5 lg:h-5 flex items-center justify-center active:scale-90"
           >
             <MinusIcon className="w-5 h-5 lg:w-4 lg:h-4 text-white stroke-[2]" />
@@ -98,32 +98,22 @@ const CartItem = ({ item, selectedSize, onSizeChange }) => {
           </div>
           <button
             type="button"
-            onClick={onIncreaseItemQTY}
+            onClick={() => dispatch(setIncreaseItemQTY({ _id }))}
             className="bg-theme-cart rounded w-6 h-6 lg:w-5 lg:h-5 flex items-center justify-center active:scale-90"
           >
             <PlusIcon className="w-5 h-5 lg:w-4 lg:h-4 text-white stroke-[2]" />
           </button>
         </div>
-        <div className="grid items-center gap-5">
-          <div className="grid items-center justify-center">
-            <h1 className="text-lg lg:text-base text-slate-900 font-medium">
-              ${price * cartQuantity}
-            </h1>
-          </div>
-          <div className="grid items-center justify-center">
-            <button
-              type="button"
-              className="bg-theme-cart rounded p-1 lg:p-0.5 grid items-center justify-items-center cursor-pointer"
-              onClick={onRemoveItem}
-            >
-              <TrashIcon className="w-5 h-5 text-white" />
-            </button>
-          </div>
-        </div>
+        <button
+          type="button"
+          onClick={() => dispatch(setRemoveItemFromCart({ _id }))}
+          className="w-6 h-6 lg:w-5 lg:h-5 flex items-center justify-center active:scale-90"
+        >
+          <TrashIcon className="w-5 h-5 lg:w-4 lg:h-4 text-red-500 stroke-[2]" />
+        </button>
       </div>
     </div>
   );
 };
 
 export default CartItem;
-  

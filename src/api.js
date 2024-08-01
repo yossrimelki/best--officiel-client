@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://testing-server-vercel.vercel.app/api',
+  baseURL: 'http://localhost:3000/api',
   headers: {
     'Cache-Control': 'no-cache',
   },
@@ -17,19 +17,18 @@ export const createReclamation = async (data) => {
     throw error;
   }
 };
+
 export const createCommande = async (data) => {
   try {
-    // Determine productType based on items
     let productType = 'Watch';
     if (data.items.some(item => item.sizes && item.sizes.length > 0)) {
       productType = 'Shoes';
     }
 
-    // Modify payload to match backend expectations
     const payload = {
       ...data,
       items: data.items.map(item => ({
-        productId: item._id, // Send productId instead of _id
+        productId: item._id,
         productType: item.productType,
         title: item.title,
         quantity: item.quantity,
@@ -51,31 +50,73 @@ export const createCommande = async (data) => {
   }
 };
 
-
 export const getShoes = async () => {
   try {
-      const response = await api.get('/shoes/', {
-          headers: {
-              'Cache-Control': 'no-cache',
-          }
-      });
-      return response.data;
+    const response = await api.get('/shoes/', {
+      headers: {
+        'Cache-Control': 'no-cache',
+      }
+    });
+    return response.data;
   } catch (error) {
-      console.error('Error fetching shoes data:', error);
-      return [];
+    console.error('Error fetching shoes data:', error);
+    return [];
   }
 };
 
 export const getWatches = async () => {
   try {
-      const response = await api.get('/watches/', {
-          headers: {
-              'Cache-Control': 'no-cache',
-          }
-      });
-      return response.data;
+    const response = await api.get('/watches/', {
+      headers: {
+        'Cache-Control': 'no-cache',
+      }
+    });
+    return response.data;
   } catch (error) {
-      console.error('Error fetching watches data:', error);
-      return [];
+    console.error('Error fetching watches data:', error);
+    return [];
   }
 };
+
+export const getWatchesGroupedByCategory = async (categoryId) => {
+  try {
+    const response = await api.get(`/watches/grouped-by-category/${categoryId}`, {
+      headers: {
+        'Cache-Control': 'no-cache',
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching watches data by category ID:', error);
+    return [];
+  }
+};
+export const getCategories = async () => {
+  try {
+    const response = await api.get('/categories/', {
+      headers: {
+        'Cache-Control': 'no-cache',
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching categories:', error);
+    return [];
+  }
+};
+// Fetch watches grouped by subcategories for a specific category ID
+export const getWatchesGroupedBySubCategory = async (categoryId) => {
+  const response = await axios.get(`http://localhost:3000/api/categories/${categoryId}/subcategories`);
+  const subCategories = response.data;
+
+  const watchesDataPromises = subCategories.map(async (subCategory) => {
+    const watchesResponse = await axios.get(`http://localhost:3000/api/watches/sub-category/${subCategory.title}`);
+    return {
+      subCategoryName: subCategory.title,
+      items: watchesResponse.data.items
+    };
+  });
+
+  return await Promise.all(watchesDataPromises);
+};
+

@@ -1,0 +1,26 @@
+{
+    "title": "Bienvenue dans notre magasin",
+    "subtitle": "Trouvez votre correspondance parfaite",
+    "btntext": "Acheter maintenant",
+    "clothing": {
+      "title": "Découvrez notre collection de vêtements exclusive",
+      "subtitle": "Explorez les dernières tendances et les styles intemporels avec notre collection de vêtements exclusive. Des tenues décontractées aux tenues formelles, trouvez la tenue parfaite pour chaque occasion. Profitez de tissus de haute qualité, de designs exceptionnels et d'un confort inégalé.",
+      "btn": "Acheter maintenant",
+      "url": "https://www.yourstore.com/clothing",
+      "img": "https://th.bing.com/th/id/R.da509aec9346c4a6b460a9819a9f4089?rik=mg5Zn7WKVR%2fsxA&riu=http%3a%2f%2fclipart-library.com%2fimages_k%2ftransparent-clothes-pictures%2ftransparent-clothes-pictures-7.png&ehk=14l2WcTshFLFbMK7tRS%2bRm8v2kmN0b93JDhmMe7lmuw%3d&risl=1&pid=ImgRaw&r=0"
+    },
+    "highlight": {
+      "heading": "POINTS FORTS",
+      "storeTitle": "Bienvenue dans notre magasin",
+      "storeSubtitle": "Trouvez votre correspondance parfaite",
+      "storeBtnText": "Acheter maintenant",
+      "seeMore": "Voir plus",
+      "ourShoesCollection": "Notre collection de chaussures"
+    },
+    "footer": {
+      "title": "Restez Connecté",
+      "subtitle": "Suivez-nous sur les réseaux sociaux et restez informé des dernières offres et actualités.",
+      "copyright": "Tous droits réservés"
+    }
+  }
+  

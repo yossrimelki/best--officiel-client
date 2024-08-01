@@ -7,4 +7,6 @@ export { default as Stories } from './Stories.jsx';
 export { default as Footer } from './Footer.jsx';
 export {default as Sidebar } from './Sidebar.jsx'
 export {default as Reclamation } from './Reclamation.jsx'
+export {default as FlexVideoContent} from './FlexVideoContent.jsx'
+export {default as EmotionBar} from './EmotionBar.jsx'
 

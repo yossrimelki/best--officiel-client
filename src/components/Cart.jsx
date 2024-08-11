@@ -73,14 +73,14 @@ const Cart = () => {
 
     const handleFormSubmit = async (e) => {
         e.preventDefault();
-
+    
         if (!formData.name || !formData.email || !formData.location || !formData.phone) {
             alert("Please fill in all fields.");
             return;
         }
-
+    
         try {
-            // Prepare items array with discounted price
+            // Prepare items array with discounted price and selected sizes
             const items = cartItems.map((item) => {
                 const newPrice = item.solde ? item.price - (item.price * item.solde / 100) : item.price;
                 return {
@@ -89,58 +89,31 @@ const Cart = () => {
                     productType: "Shoes",
                     quantity: item.cartQuantity,
                     price: newPrice,
-                    solde: item.solde
+                    solde: item.solde,
+                    selectedSize: selectedSizes[item._id]  // Include selected size
                 };
             });
-
+    
             const commandeData = {
                 name: formData.name,
                 phone: formData.phone,
                 items: items,
-                totalAmount: items.reduce((acc, item) => acc + item.price * item.quantity, 0), // Compute total amount
+                totalAmount: items.reduce((acc, item) => acc + item.price * item.quantity, 0),
                 deliveryAddress: formData.location,
                 paymentMethod: "placeholder_payment_method",
                 orderDate: new Date(),
             };
-
+    
             console.log('Sending payload to backend:', JSON.stringify(commandeData, null, 2));
-
+    
             // Call createCommande function from API
             const response = await createCommande(commandeData);
             console.log('Commande created:', response);
-
-            // Prepare email template parameters
-            const templateParams = {
-                name: formData.name,
-                email: formData.email,
-                location: formData.location,
-                phone: formData.phone,
-                cartItems: items.map((item) => ({
-                    title: item.title,
-                    price: item.price,
-                    cartQuantity: item.quantity,
-                    sizes: item.sizes,
-                    selectedSize: selectedSizes[item._id],
-                })),
-            };
-
-            console.log("templateParams:", templateParams);
-
-            // Send email using emailjs.com
-            emailjs.send('service_upneb3e', 'template_w19jcug', templateParams, 'YOUR_EMAILJS_USER_ID')
-                .then(
-                    (result) => {
-                        console.log(result.text);
-                        setShowPopup(false);
-                        onClearCartItems();
-                        alert("Order placed successfully!");
-                    },
-                    (error) => {
-                        console.error("Failed to send email:", error);
-                        alert("Failed to place order. Please try again.");
-                    }
-                );
-
+    
+            setShowPopup(false);
+            onClearCartItems();
+            alert("Order placed successfully!");
+    
         } catch (error) {
             console.error('Failed to create commande:', error);
             if (error.response && error.response.data && error.response.data.message) {
@@ -150,6 +123,7 @@ const Cart = () => {
             }
         }
     };
+    
 
     return (
         <>

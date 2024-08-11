@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://bestofficiel.com/api',
+  baseURL: 'https://api.bestofficiel.com/api',
   timeout: 150000
 });
 

@@ -1,4 +1,3 @@
-// utils/Item.js
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { StarIcon, ShoppingBagIcon } from '@heroicons/react/24/solid';
@@ -62,7 +61,7 @@ const Item = ({
 
   return (
     <div
-      className={`relative bg-gradient-to-b ${color} ${shadow} grid items-center ${
+      className={`relative z-10 bg-gradient-to-b ${color} ${shadow} grid items-center ${
         ifExists ? 'justify-items-start' : 'justify-items-center'
       } rounded-xl py-4 px-5 transition-all duration-700 ease-in-out ${itemStyles}`}
     >
@@ -115,17 +114,17 @@ const Item = ({
           
           <button
             type="button"
-            className="bg-white/90 blur-effect-theme button-theme px-2 py-1 shadow shadow-sky-200 text-sm text-black"
+            className="relative z-10 bg-white/90 blur-effect-theme button-theme px-2 py-1 shadow shadow-sky-200 text-sm text-black"
             onClick={() => {
               onAddToCart();
               onCartToggle();
             }}
           >
-            <ShoppingBagIcon className="icon-style text-slate-900" >Buy Now {btn}</ShoppingBagIcon>
+            <ShoppingBagIcon className="icon-style text-slate-900" />
           </button>
           <button
             type="button"
-            className="bg-white/90 blur-effect-theme button-theme px-2 py-1 shadow shadow-sky-200 text-sm text-black"
+            className="relative z-10 bg-white/90 blur-effect-theme button-theme px-2 py-1 shadow shadow-sky-200 text-sm text-black"
             onClick={handleDetailsClick}
           >
             View Details

@@ -18,8 +18,8 @@ i18n.use(initReactI18next).init({
             translation: arTranslation
         }
     },
-    lng: 'en', // default language
-    fallbackLng: 'en',
+    lng: 'fr', // default language
+    fallbackLng: 'fr',
     interpolation: {
         escapeValue: false // React already does escaping
     }

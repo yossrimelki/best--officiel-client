@@ -47,15 +47,17 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 200; /* Make sure it appears above the navbar */
-  transition: all 0.3s ease-in-out;
+  z-index: 200; /* Ensures the bar appears above other elements */
+  overflow: hidden; /* Hides overflowing text */
 }
 
 .emotion-text {
+  display: inline-block; /* Keeps the text in a single line */
   font-size: 1rem;
   font-weight: 500;
   color: #333;
-  animation: marquee 10s linear infinite;
+  white-space: nowrap; /* Prevents the text from wrapping */
+  animation: marquee 10s linear infinite; /* Marquee effect */
 }
 
 @keyframes marquee {
@@ -63,11 +65,20 @@
   100% { transform: translateX(-100%); }
 }
 
+/* Existing styles... */
+
 @media (max-width: 768px) {
   .emotion-text {
-      font-size: 0.85rem;
+    font-size: 0.75rem; /* Further reduce font size */
+    padding: 0 5px; /* Reduce padding to give more space for text */
+  }
+
+  .emotion-bar {
+    padding: 5px 0; /* Reduce padding on the bar */
   }
 }
+
+
 html {
   scroll-behavior: smooth;
 }

@@ -43,7 +43,7 @@ const Navbar = ({ onSidebarToggle }) => {
         <>
             <EmotionBar /> {/* Add EmotionBar here */}
             <header className={
-                !navState ? 'fixed top-10 left-0 right-0 opacity-100 z-90 blur-effect-theme' : 'fixed top-10 left-0 right-0 h-[15vh] flex items-center justify-center opacity-100 z-100 blur-effect-theme'
+                !navState ? 'fixed top-10 left-0 right-0 opacity-100 z-150 blur-effect-theme' : 'fixed top-10 left-0 right-0 h-[15vh] flex items-center justify-center opacity-100 z-150 blur-effect-theme'
             }>
                 <nav className='flex items-center justify-between nike-container'>
                     <div className='flex items-center'>
@@ -70,8 +70,8 @@ const Navbar = ({ onSidebarToggle }) => {
                                 onChange={changeLanguage} 
                                 className='border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-900 duration-300 p-1'
                             >
-                                <option value="en">English</option>
                                 <option value="fr">Français</option>
+                                <option value="en">English</option>
                                 <option value="ar">العربية</option>
                             </select>
                         </li>

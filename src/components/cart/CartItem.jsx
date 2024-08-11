@@ -41,7 +41,7 @@ const CartItem = ({ item, selectedSize, onSizeChange }) => {
           className={`bg-gradient-to-b ${color} ${shadow} relative rounded p-3 hover:scale-105 transition-all duration-75 ease-in-out grid items-center`}
         >
           <img
-            src={`http://localhost:3000${img}`}
+            src={`https://api.bestofficiel.com${img}`}
             alt={`img/cart-item/${_id}`}
             className="w-36 h-auto object-fill lg:w-28"
           />

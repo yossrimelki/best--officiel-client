@@ -106,11 +106,11 @@ export const getCategories = async () => {
 };
 // Fetch watches grouped by subcategories for a specific category ID
 export const getWatchesGroupedBySubCategory = async (categoryId) => {
-  const response = await axios.get(`http://localhost:3000/api/categories/${categoryId}/subcategories`);
+  const response = await axios.get(`https://api.bestofficiel.com/api/categories/${categoryId}/subcategories`);
   const subCategories = response.data;
 
   const watchesDataPromises = subCategories.map(async (subCategory) => {
-    const watchesResponse = await axios.get(`http://localhost:3000/api/watches/sub-category/${subCategory.title}`);
+    const watchesResponse = await axios.get(`https://api.bestofficiel.com/api/watches/sub-category/${subCategory.title}`);
     return {
       subCategoryName: subCategory.title,
       items: watchesResponse.data.items

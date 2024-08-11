@@ -138,7 +138,7 @@ const Item = ({
         }`}
       >
         <img
-          src={`http://localhost:3000${img}`}
+          src={`https://api.bestofficiel.com${img}`}
           alt={`img/item-img/${_id}`}
           className={`transitions-theme ${imageStyles}`}
         />

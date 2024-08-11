@@ -40,7 +40,7 @@ const ProductDetails = () => {
       <div className="w-full md:flex md:gap-8">
         <div className="w-full md:w-1/2">
         <img
-  src={`http://localhost:3000${product.img}`} // Use template literals correctly
+  src={`https://api.bestofficiel.com${product.img}`} // Use template literals correctly
   alt={product.title}
   className="w-full h-auto object-cover rounded-lg shadow-lg"
 />

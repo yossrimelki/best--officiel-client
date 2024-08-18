@@ -11,7 +11,7 @@ const Item = ({
   shadow,
   title,
   text,
-  img,
+  img, // Ensure this is an array
   btn,
   rating,
   price,
@@ -27,7 +27,7 @@ const Item = ({
       _id,
       title,
       text,
-      img,
+      img: img[0], // Pass only the first image
       color,
       shadow,
       price,
@@ -53,8 +53,8 @@ const Item = ({
     : 'w-full hover:scale-105';
 
   const imageStyles = itemType === 'watch'
-    ? 'h-48 w-48 object-contain' // Contain within the container
-    : 'w-full h-auto object-contain'; // Ensure image fits within the box without overflow
+    ? 'h-48 w-48 object-contain'
+    : 'w-full h-auto object-contain';
 
   const textColor = color.includes('bg-white') ? 'text-black' : 'text-slate-200';
 
@@ -135,7 +135,7 @@ const Item = ({
         }`}
       >
         <img
-          src={`https://api.bestofficiel.com${img}`}
+          src={`https://api.bestofficiel.com${img[0]}`} // Use the first image from the array
           alt={`img/item-img/${_id}`}
           className={`transitions-theme ${imageStyles}`}
         />

@@ -39,6 +39,7 @@
 .read-the-docs {
   color: #888;
 }
+
 .emotion-bar {
   width: 100%;
   background-color: #f8f9fa;
@@ -47,17 +48,17 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 200; /* Ensures the bar appears above other elements */
-  overflow: hidden; /* Hides overflowing text */
+  z-index: 200;
+  overflow: hidden;
 }
 
 .emotion-text {
-  display: inline-block; /* Keeps the text in a single line */
+  display: inline-block;
   font-size: 1rem;
   font-weight: 500;
   color: #333;
-  white-space: nowrap; /* Prevents the text from wrapping */
-  animation: marquee 10s linear infinite; /* Marquee effect */
+  white-space: nowrap;
+  animation: marquee 10s linear infinite;
 }
 
 @keyframes marquee {
@@ -65,19 +66,16 @@
   100% { transform: translateX(-100%); }
 }
 
-/* Existing styles... */
-
 @media (max-width: 768px) {
   .emotion-text {
-    font-size: 0.75rem; /* Further reduce font size */
-    padding: 0 5px; /* Reduce padding to give more space for text */
+    font-size: 0.75rem;
+    padding: 0 5px;
   }
 
   .emotion-bar {
-    padding: 5px 0; /* Reduce padding on the bar */
+    padding: 5px 0;
   }
 }
-
 
 html {
   scroll-behavior: smooth;

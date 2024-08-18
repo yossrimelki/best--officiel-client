@@ -5,6 +5,7 @@ const api = axios.create({
   timeout: 150000
 });
 
+// Function to create a reclamation
 export const createReclamation = async (data) => {
   try {
     const response = await api.post('/reclamation', data);
@@ -15,6 +16,7 @@ export const createReclamation = async (data) => {
   }
 };
 
+// Function to create a commande
 export const createCommande = async (data) => {
   try {
     let productType = 'Watch';
@@ -47,6 +49,7 @@ export const createCommande = async (data) => {
   }
 };
 
+// Function to fetch shoes data
 export const getShoes = async () => {
   try {
     const response = await api.get('/shoes/', {
@@ -61,6 +64,7 @@ export const getShoes = async () => {
   }
 };
 
+// Function to fetch watches data
 export const getWatches = async () => {
   try {
     const response = await api.get('/watches/', {
@@ -75,6 +79,7 @@ export const getWatches = async () => {
   }
 };
 
+// Function to fetch watches grouped by a specific category ID
 export const getWatchesGroupedByCategory = async (categoryId) => {
   try {
     const response = await api.get(`/watches/grouped-by-category/${categoryId}`, {
@@ -88,6 +93,8 @@ export const getWatchesGroupedByCategory = async (categoryId) => {
     return [];
   }
 };
+
+// Function to fetch all categories
 export const getCategories = async () => {
   try {
     const response = await api.get('/categories/', {
@@ -101,19 +108,24 @@ export const getCategories = async () => {
     return [];
   }
 };
-// Fetch watches grouped by subcategories for a specific category ID
+
+// Function to fetch watches grouped by subcategories for a specific category ID
 export const getWatchesGroupedBySubCategory = async (categoryId) => {
-  const response = await axios.get(`https://api.bestofficiel.com/api/categories/${categoryId}/subcategories`);
-  const subCategories = response.data;
+  try {
+    const response = await api.get(`/categories/${categoryId}/subcategories`);
+    const subCategories = response.data;
 
-  const watchesDataPromises = subCategories.map(async (subCategory) => {
-    const watchesResponse = await axios.get(`https://api.bestofficiel.com/api/watches/sub-category/${subCategory.title}`);
-    return {
-      subCategoryName: subCategory.title,
-      items: watchesResponse.data.items
-    };
-  });
+    const watchesDataPromises = subCategories.map(async (subCategory) => {
+      const watchesResponse = await api.get(`/watches/sub-category/${subCategory.title}`);
+      return {
+        subCategoryName: subCategory.title,
+        items: watchesResponse.data.items
+      };
+    });
 
-  return await Promise.all(watchesDataPromises);
+    return await Promise.all(watchesDataPromises);
+  } catch (error) {
+    console.error('Error fetching watches data by subcategory:', error);
+    return [];
+  }
 };
-

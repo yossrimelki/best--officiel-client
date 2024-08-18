@@ -33,7 +33,7 @@ const Item = ({
       price,
       sizes,
       solde,
-      productId: _id
+      productId: _id,
     };
     dispatch(setAddItemToCart(item));
   };
@@ -46,17 +46,16 @@ const Item = ({
     navigate(`/product/${_id}`);
   };
 
-  const newPrice = solde ? price - (price * solde / 100) : price;
+  const newPrice = solde ? price - (price * solde) / 100 : price;
 
   const itemStyles = itemType === 'watch'
     ? 'w-[200px] h-[300px] p-4'
     : 'w-full hover:scale-105';
 
   const imageStyles = itemType === 'watch'
-    ? 'h-48 w-48' // Ensure no rotation here
-    : 'h-auto w-64 lg:w-56 md:w-48'; // Remove rotation styles for non-watch items
+    ? 'h-48 w-48 object-contain' // Contain within the container
+    : 'w-full h-auto object-contain'; // Ensure image fits within the box without overflow
 
-  // Determine text color based on background color
   const textColor = color.includes('bg-white') ? 'text-black' : 'text-slate-200';
 
   return (
@@ -111,7 +110,6 @@ const Item = ({
         )}
 
         <div className="flex items-center justify-between w-full">
-          
           <button
             type="button"
             className="relative z-10 bg-white/90 blur-effect-theme button-theme px-2 py-1 shadow shadow-sky-200 text-sm text-black"
